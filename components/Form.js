@@ -1,4 +1,6 @@
 import { useReducer } from "react";
+import Success from "./Success";
+import Bug from "./Bug";
 
 const formReducer = (state, event) => {
   return {
@@ -10,10 +12,13 @@ const formReducer = (state, event) => {
 export default function Form() {
   const [formData, setFormData] = useReducer(formReducer, {});
 
-  const handleSubmit=()=>{
-    event.preventDefault();
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    if(Object.keys(formData).length==0)return console.log("Dont have enough data")
     console.log(formData);
   }
+
+  if(Object.keys(formData).length>0) return<Success msg={"Data Added"}></Success>
   return (
     <form className="grid lg:grid-cols-2 w-4/6 gap-4" onSubmit={handleSubmit}>
       <div className="input-type">
