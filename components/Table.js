@@ -1,5 +1,5 @@
 import { BiEdit, BiTrashAlt } from "react-icons/bi";
-
+import data from "../database/data.json"
 
 export default function Table(){
     return(
@@ -25,31 +25,39 @@ export default function Table(){
                         <span className="text-gray-200">Actions</span>
                     </th>
                 </tr>
-            </thead>
+            </thead> 
             <tbody className="bg-gray-200">
-            <tr className="bg-gray-50 text-center">
+            {
+                data.map((obj,i)=><Tr {...obj} key={i}/>)
+            }
+            </tbody>
+        </table>
+    )
+}
+
+function Tr({id,name,avatar,email,salary,date,status}){
+    return(
+        <tr className="bg-gray-50 text-center">
             <td className="px-16 py-2 flex flex-row items-center">
-                        <img src="#" alt="" />
-                        <span className="text-center ml-2 font-semibold">Utkarsh</span>
+                        <img src={avatar || '#'} alt="" />
+                        <span className="text-center ml-2 font-semibold">{name || "unknown"}</span>
                     </td>
                     <td className="px-16 py-2">
-                        <span>utkarsh@gmail.com</span>
+                        <span>{email || "unknown"}</span>
                     </td>
                     <td className="px-16 py-2">
-                        <span>8000000</span>
+                        <span>{salary || "unknown"}</span>
                     </td>
                     <td className="px-16 py-2">
-                        <span>14-08-1999</span>
+                        <span>{date || "unknown"}</span>
                     </td>
                     <td className="px-16 py-2">
-                        <button className="cursor"><span className="bg-green-500 text-white px-5 py-1 rounded-full">Active</span></button>
+                        <button className="cursor"><span className="bg-green-500 text-white px-5 py-1 rounded-full">{status || "unknown"}</span></button>
                     </td>
                     <td className="px-16 py-2 flex justify-around gap-5">
                         <button className="cursor"><BiEdit size={25} color={"green"}></BiEdit></button>
                         <button className="cursor"><BiTrashAlt size={25} color={"red"}></BiTrashAlt></button>
                     </td>
             </tr>
-            </tbody>
-        </table>
     )
 }
