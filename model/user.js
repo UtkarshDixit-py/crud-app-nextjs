@@ -1,5 +1,4 @@
-import {Scheme , models , model} from 'mongoose'
-import { stringify } from 'postcss'
+import {Schema , models , model} from 'mongoose'
 
 const userSchema = new Schema ({
      name:String,
