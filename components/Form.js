@@ -1,8 +1,24 @@
+import { useReducer } from "react";
+
+const formReducer = (state, event) => {
+  return {
+    ...state,
+    [event.target.name]: event.target.value,
+  };
+};
+
 export default function Form() {
+  const [formData, setFormData] = useReducer(formReducer, {});
+
+  const handleSubmit=()=>{
+    event.preventDefault();
+    console.log(formData);
+  }
   return (
-    <form className="grid lg:grid-cols-2 w-4/6 gap-4">
+    <form className="grid lg:grid-cols-2 w-4/6 gap-4" onSubmit={handleSubmit}>
       <div className="input-type">
         <input
+          onChange={setFormData}
           type="text"
           name="firstname"
           className="border bg-white w-full px-5 py-3 focus:outline-none rounded-md"
@@ -11,6 +27,7 @@ export default function Form() {
       </div>
       <div className="input-type">
         <input
+          onChange={setFormData}
           type="text"
           name="firstname"
           className="border bg-white w-full px-5 py-3 focus:outline-none rounded-md"
@@ -19,6 +36,7 @@ export default function Form() {
       </div>
       <div className="input-type">
         <input
+          onChange={setFormData}
           type="text"
           name="email"
           className="border bg-white w-full px-5 py-3 focus:outline-none rounded-md"
@@ -27,6 +45,7 @@ export default function Form() {
       </div>
       <div className="input-type">
         <input
+          onChange={setFormData}
           type="text"
           name="salary"
           className="border bg-white w-full px-5 py-3 focus:outline-none rounded-md"
@@ -35,16 +54,17 @@ export default function Form() {
       </div>
       <div className="input-type">
         <input
+          onChange={setFormData}
           type="date"
           name="date"
-          className="border bg-white px-5 py-3  rounded-md"
-          placeholder="Salary"
+          className="border px-5 py-3 bg-white focus:outline-none rounded-md"
         />
       </div>
 
       <div className="flex gap-10 items-center">
         <div className="form-check">
           <input
+            onChange={setFormData}
             type="radio"
             value="Active"
             id="radioDefault1"
@@ -57,6 +77,7 @@ export default function Form() {
         </div>
         <div className="form-check">
           <input
+            onChange={setFormData}
             type="radio"
             value="Inactive"
             id="radioDefault2"
@@ -69,7 +90,7 @@ export default function Form() {
         </div>
       </div>
 
-      <button className="flex justify-center text-md w-2/6 bg-green-500 text-white px-4 py-2 border rounded-md hover:bg-gray-50 hover:border-green-500 hover:text-green-500">
+      <button className="flex justify-center text-md w-2/6    bg-gray-50 border-green-500 text-green-500 px-4 py-2 border rounded-md hover:bg-green-500  hover:text-white">
         Add
       </button>
     </form>
