@@ -1,7 +1,7 @@
 import connectMongo from "../../../database/conn"
 
 export default async function handler(req, res) {
-    connectMongo().catch()=>res.status(405).json({error:"Error in the Connection"})
+    connectMongo().catch(()=>res.status(405).json({error:"Error in the Connection"}))
 
     //type of request ['GET','POST','PUT','DELETE']
 
