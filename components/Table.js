@@ -3,7 +3,7 @@ import { getUsers } from "../lib/helper";
 import { useQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { toggleChangeAction } from "../redux/reducer";
+import { toggleChangeAction , updateAction} from "../redux/reducer";
 
 export default function Table() {
   const { isLoading, isError, data, error } = useQuery(["users"], getUsers);
@@ -44,12 +44,15 @@ export default function Table() {
   );
 }
 
-function Tr({ id, name, avatar, email, salary, date, status }) {
+function Tr({ _id, name, avatar, email, salary, date, status }) {
   const visible = useSelector((state) => state.app.client.toggleForm);
   const dispatch = useDispatch();
 
   const onUpdate = () => {
     dispatch(toggleChangeAction());
+    if(visible){
+        dispatch(updateAction(_id))
+    }
   };
   return (
     <tr className="bg-gray-50 text-center">

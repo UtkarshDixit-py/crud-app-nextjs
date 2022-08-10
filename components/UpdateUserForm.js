@@ -2,15 +2,8 @@ import { useReducer } from "react";
 import Success from "./Success";
 import Bug  from "./Bug";
 
-const formReducer = (state, event) => {
-  return {
-    ...state,
-    [event.target.name]: event.target.value,
-  };
-};
 
 export default function UpdateUserForm() {
-  const [formData, setFormData] = useReducer(formReducer, {});
 
   const handleSubmit=(e)=>{
     e.preventDefault();
