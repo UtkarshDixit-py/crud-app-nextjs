@@ -4,10 +4,17 @@ import Form from "../components/Form";
 
 import { BiUserPlus } from "react-icons/bi";
 import { useState } from "react";
+import { toggleChangeAction } from "../redux/reducer";
+
+import { useSelector , useDispatch } from "react-redux";
 
 export default function Home() {
-  const [visible, setVisible] = useState(false);
+  const visible = useSelector((state) => state.app.client.toggleForm);
+  const dispatch = useDispatch();
 
+  const handler =()=>{
+    dispatch(toggleChangeAction());
+  }
   return (
     <section>
       <Head>
@@ -23,7 +30,7 @@ export default function Home() {
         <div className="container mx-auto flex justify-between py-5 border-b">
           <div className="left flex gap-3">
             <button
-              onClick={() => setVisible(!visible)}
+              onClick={handler}
               className="flex  bg-gray-50  text-gray-800 px-4 py-2 border rounded-md hover:bg-indigo-500 hover:border-indigo-500 hover:text-white"
             >
               Add Employee
