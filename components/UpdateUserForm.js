@@ -1,17 +1,28 @@
 import { useReducer } from "react";
 import Success from "./Success";
 import Bug  from "./Bug";
+import { useQuery } from "@tanstack/react-query";
+import { getUser } from "../lib/helper";
 
 
-export default function UpdateUserForm() {
+export default function UpdateUserForm({formId,formData,setFormData}) {
 
+  const {isLoading ,isError,data,error} = useQuery(['users',formId],()=>getUser(formId))
+
+   
+  if(isLoading)return <div>Loading....</div>
+  if(isError) return <div>Error</div>
+
+
+  const {name , avatar,salary,date,email,status} = data;
+  const [firstname,lastname] = name ? name.split('') : formData
   const handleSubmit=(e)=>{
     e.preventDefault();
     if(Object.keys(formData).length==0)return console.log("Dont have enough data")
     console.log(formData);
   }
 
-  // if(Object.keys(formData).length>0) return<Success msg={"Data Added"}></Success>
+
   return (
     <form className="grid lg:grid-cols-2 w-4/6 gap-4" onSubmit={handleSubmit}>
       <div className="input-type">
@@ -21,15 +32,17 @@ export default function UpdateUserForm() {
           name="firstname"
           className="border bg-white w-full px-5 py-3 focus:outline-none rounded-md"
           placeholder="FirstName"
+          defaultValue={firstname}
         />
       </div>
       <div className="input-type">
         <input
           onChange={setFormData}
           type="text"
-          name="firstname"
+          name="lastname"
           className="border bg-white w-full px-5 py-3 focus:outline-none rounded-md"
           placeholder="LastName"
+          defaultValue={lastname}
         />
       </div>
       <div className="input-type">
@@ -39,6 +52,7 @@ export default function UpdateUserForm() {
           name="email"
           className="border bg-white w-full px-5 py-3 focus:outline-none rounded-md"
           placeholder="Email"
+          defaultValue={email}
         />
       </div>
       <div className="input-type">
@@ -48,6 +62,7 @@ export default function UpdateUserForm() {
           name="salary"
           className="border bg-white w-full px-5 py-3 focus:outline-none rounded-md"
           placeholder="Salary"
+          defaultValue={salary}
         />
       </div>
       <div className="input-type">
@@ -56,6 +71,7 @@ export default function UpdateUserForm() {
           type="date"
           name="date"
           className="border px-5 py-3 bg-white focus:outline-none rounded-md"
+          defaultValue={date}
         />
       </div>
 
@@ -63,6 +79,7 @@ export default function UpdateUserForm() {
         <div className="form-check">
           <input
             onChange={setFormData}
+            defaultChecked={status=="Active"}
             type="radio"
             value="Active"
             id="radioDefault1"
@@ -76,6 +93,7 @@ export default function UpdateUserForm() {
         <div className="form-check">
           <input
             onChange={setFormData}
+            defaultChecked={status !=="Active"}
             type="radio"
             value="Inactive"
             id="radioDefault2"

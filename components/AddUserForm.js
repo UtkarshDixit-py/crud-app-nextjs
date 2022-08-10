@@ -49,7 +49,7 @@ export default function AddUserForm({formData,setFormData}) {
         <input
           onChange={setFormData}
           type="text"
-          name="firstname"
+          name="lastname"
           className="border bg-white w-full px-5 py-3 focus:outline-none rounded-md"
           placeholder="LastName"
         />
