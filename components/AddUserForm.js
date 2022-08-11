@@ -1,11 +1,11 @@
 import { useReducer } from "react";
 import { BiPlus } from 'react-icons/bi'
+
 import Success from "./Success";
 import Bug  from "./Bug";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { addUser } from "../lib/helper";
 import { getUsers } from "../lib/helper";
-
 
 
 
@@ -30,7 +30,7 @@ export default function AddUserForm({formData,setFormData}) {
     addMutation.mutate(model)
   }
 
-  if(addMutation.isLoading) return <div>Loading!</div>
+  if(addMutation.isLoading) return <div>Loading Add user form!</div>
   if(addMutation.isError) return <Bug message={addMutation.error.message}></Bug>
   if(addMutation.isSuccess) return <Success msg={"Data Added"}></Success>
 

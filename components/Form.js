@@ -11,8 +11,6 @@ const formReducer = (state, event) => {
   };
 };
 
-
-
 export default function Form() {
 
   const [formData, setFormData] = useReducer(formReducer, {});

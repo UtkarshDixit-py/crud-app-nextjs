@@ -8,7 +8,8 @@ export async function getUsers(req,res) {
     if (!users) return res.status(404).json({ error: "Data not Found" });
     res.status(200).json(users);
   } catch (error) {
-    res.status(404).json({ error: "Error while fetching data" });
+    // res.status(404).json({ error: "Error while fetching data"});
+    res.status(404).json(error);
   }
 }
 

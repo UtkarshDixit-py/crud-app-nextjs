@@ -4,13 +4,16 @@ import Bug  from "./Bug";
 import { useQuery } from "@tanstack/react-query";
 import { getUser } from "../lib/helper";
 
+import { BiBrush } from 'react-icons/bi'
+
+
 
 export default function UpdateUserForm({formId,formData,setFormData}) {
 
   const {isLoading, isError, data, error} = useQuery(['users', formId], () => getUser(formId))
 
    
-  if(isLoading)return <div>Loading....</div>
+  if(isLoading)return <div>Loading update form</div>
   if(isError) return <div>Error</div>
 
 
@@ -79,7 +82,7 @@ export default function UpdateUserForm({formId,formData,setFormData}) {
         <div className="form-check">
           <input
             onChange={setFormData}
-            defaultChecked={status=="Active"}
+            defaultChecked={status==="Active"}
             type="radio"
             value="Active"
             id="radioDefault1"
@@ -106,8 +109,8 @@ export default function UpdateUserForm({formId,formData,setFormData}) {
         </div>
       </div>
 
-      <button className="flex justify-center text-md w-2/6    bg-gray-50 border-green-500 text-green-500 px-4 py-2 border rounded-md hover:bg-green-500  hover:text-white">
-        Update
+      <button className="flex justify-center text-md w-2/6  bg-gray-50 border-green-500 text-green-500 px-4 py-2 border rounded-md hover:bg-green-500  hover:text-white">
+        Update <span className="px-1"><BiBrush size={24}></BiBrush></span>
       </button>
     </form>
   );
