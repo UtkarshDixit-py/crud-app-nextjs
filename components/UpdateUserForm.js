@@ -7,7 +7,7 @@ import { getUser } from "../lib/helper";
 
 export default function UpdateUserForm({formId,formData,setFormData}) {
 
-  const {isLoading ,isError,data,error} = useQuery(['users',formId],()=>getUser(formId))
+  const {isLoading, isError, data, error} = useQuery(['users', formId], () => getUser(formId))
 
    
   if(isLoading)return <div>Loading....</div>
