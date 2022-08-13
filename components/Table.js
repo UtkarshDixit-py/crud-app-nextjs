@@ -52,6 +52,7 @@ function Tr({ _id, name, avatar, email, salary, date, status }) {
     dispatch(toggleChangeAction());
     if(visible){
         dispatch(updateAction(_id))
+        console.log(_id);
     }
   };
   return (

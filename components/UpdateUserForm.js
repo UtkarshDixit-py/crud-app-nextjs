@@ -13,7 +13,7 @@ export default function UpdateUserForm({formId,formData,setFormData}) {
   const {isLoading, isError, data, error} = useQuery(['users', formId], () => getUser(formId))
 
    
-  if(isLoading)return <div>Loading update form</div>
+  if(isLoading)return <div>Loading update form {formId}</div>
   if(isError) return <div>Error</div>
 
 
@@ -27,7 +27,8 @@ export default function UpdateUserForm({formId,formData,setFormData}) {
 
 
   return (
-    <form className="grid lg:grid-cols-2 w-4/6 gap-4" onSubmit={handleSubmit}>
+    // onSubmit={handleSubmit}
+    <form className="grid lg:grid-cols-2 w-4/6 gap-4" >
       <div className="input-type">
         <input
           onChange={setFormData}
@@ -35,7 +36,7 @@ export default function UpdateUserForm({formId,formData,setFormData}) {
           name="firstname"
           className="border bg-white w-full px-5 py-3 focus:outline-none rounded-md"
           placeholder="FirstName"
-          defaultValue={firstname}
+          // defaultValue={firstname}
         />
       </div>
       <div className="input-type">
@@ -45,7 +46,7 @@ export default function UpdateUserForm({formId,formData,setFormData}) {
           name="lastname"
           className="border bg-white w-full px-5 py-3 focus:outline-none rounded-md"
           placeholder="LastName"
-          defaultValue={lastname}
+          // defaultValue={lastname}
         />
       </div>
       <div className="input-type">
@@ -55,7 +56,7 @@ export default function UpdateUserForm({formId,formData,setFormData}) {
           name="email"
           className="border bg-white w-full px-5 py-3 focus:outline-none rounded-md"
           placeholder="Email"
-          defaultValue={email}
+          // defaultValue={email}
         />
       </div>
       <div className="input-type">
@@ -65,7 +66,7 @@ export default function UpdateUserForm({formId,formData,setFormData}) {
           name="salary"
           className="border bg-white w-full px-5 py-3 focus:outline-none rounded-md"
           placeholder="Salary"
-          defaultValue={salary}
+          // defaultValue={salary}
         />
       </div>
       <div className="input-type">
@@ -74,7 +75,7 @@ export default function UpdateUserForm({formId,formData,setFormData}) {
           type="date"
           name="date"
           className="border px-5 py-3 bg-white focus:outline-none rounded-md"
-          defaultValue={date}
+          // defaultValue={date}
         />
       </div>
 
@@ -82,7 +83,7 @@ export default function UpdateUserForm({formId,formData,setFormData}) {
         <div className="form-check">
           <input
             onChange={setFormData}
-            defaultChecked={status==="Active"}
+            // defaultChecked={status==="Active"}
             type="radio"
             value="Active"
             id="radioDefault1"
@@ -96,7 +97,7 @@ export default function UpdateUserForm({formId,formData,setFormData}) {
         <div className="form-check">
           <input
             onChange={setFormData}
-            defaultChecked={status !=="Active"}
+            // defaultChecked={status !=="Active"}
             type="radio"
             value="Inactive"
             id="radioDefault2"
