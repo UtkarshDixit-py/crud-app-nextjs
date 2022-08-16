@@ -1,5 +1,3 @@
-import { useReducer } from "react";
-
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getUser, updateUser, getUsers } from "../lib/helper";
 

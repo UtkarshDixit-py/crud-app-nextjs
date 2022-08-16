@@ -1,37 +1,41 @@
-import { useReducer } from "react";
-import { BiPlus } from 'react-icons/bi'
+import { BiPlus } from "react-icons/bi";
 
 import Success from "./Success";
-import Bug  from "./Bug";
+import Bug from "./Bug";
 import { useQueryClient, useMutation } from "react-query";
-import { addUser , getUsers } from "../lib/helper";
+import { addUser, getUsers } from "../lib/helper";
 
+export default function AddUserForm({ formData, setFormData }) {
+  const queryClient = useQueryClient();
+  const addMutation = useMutation(addUser, {
+    onSuccess: () => {
+      queryClient.prefetchQuery("users", getUsers);
+    },
+  });
 
-
-export default function AddUserForm({formData,setFormData}) {
-  const queryClient = useQueryClient()
-  const addMutation = useMutation(addUser,{
-    onSuccess : ()=>{
-      queryClient.prefetchQuery('users',getUsers)
-    }
-  })
-
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(Object.keys(formData).length==0)return console.log("Dont have enough data")
-    let{firstname,lastname,email,salary,date,status} = formData;
+    if (Object.keys(formData).length == 0)
+      return console.log("Dont have enough data");
+    let { firstname, lastname, email, salary, date, status } = formData;
 
     const model = {
-      name : `${firstname} ${lastname}`,
-      avatar : `https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*10)}.jpg`,
-      email,salary,date,status : status ?? "Active"
-    }
-    addMutation.mutate(model)
-  }
+      name: `${firstname} ${lastname}`,
+      avatar: `https://randomuser.me/api/portraits/men/${Math.floor(
+        Math.random() * 10
+      )}.jpg`,
+      email,
+      salary,
+      date,
+      status: status ?? "Active",
+    };
+    addMutation.mutate(model);
+  };
 
-  if(addMutation.isLoading) return <div>Loading Add user form!</div>
-  if(addMutation.isError) return <Bug message={addMutation.error.message}></Bug>
-  if(addMutation.isSuccess) return <Success msg={"Data Added"}></Success>
+  if (addMutation.isLoading) return <div>Loading Add user form!</div>;
+  if (addMutation.isError)
+    return <Bug message={addMutation.error.message}></Bug>;
+  if (addMutation.isSuccess) return <Success msg={"Data Added"}></Success>;
 
   return (
     <form className="grid lg:grid-cols-2 w-4/6 gap-4" onSubmit={handleSubmit}>
@@ -90,7 +94,7 @@ export default function AddUserForm({formData,setFormData}) {
             name="status"
             className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300  bg-white checked:bg-green-500 checked:border-green-500 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
           />
-          <label htmlFor="radioDefault1" className="inline-block tet-gray-800">
+          <label htmlFor="radioDefault1" className="inline-block">
             Active
           </label>
         </div>
@@ -103,14 +107,16 @@ export default function AddUserForm({formData,setFormData}) {
             name="status"
             className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300  bg-white checked:bg-green-500 checked:border-green-500 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
           />
-          <label htmlFor="radioDefault2" className="inline-block tet-gray-800">
+          <label htmlFor="radioDefault2" className="inline-block">
             Inactive
           </label>
         </div>
       </div>
-
       <button className="flex justify-center text-md w-2/6    bg-gray-50 border-green-500 text-green-500 px-4 py-2 border rounded-md hover:bg-green-500  hover:text-white">
-        Add<span className="px-1"><BiPlus size={24}></BiPlus></span>
+        Add
+        <span className="px-1">
+          <BiPlus size={24}></BiPlus>
+        </span>
       </button>
     </form>
   );

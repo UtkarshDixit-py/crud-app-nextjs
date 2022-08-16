@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-
-const MONGO_URI = "mongodb+srv://utkarsh:dell555g@clustercrud.kwg79yb.mongodb.net/?retryWrites=true&w=majority"
+const MONGO_URI =
+  "mongodb+srv://utkarsh:dell555g@clustercrud.kwg79yb.mongodb.net/?retryWrites=true&w=majority";
 
 const connectMongo = async () => {
   try {

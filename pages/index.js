@@ -41,9 +41,13 @@ export default function Home() {
       </Head>
 
       <main className="py-5">
-        <h1 className="text-xl md:text-5xl text-stone-50 text-center font-bold py-10">
-          Employe Management
-        </h1>
+        <span>
+          <h1 className="text-xl md:text-5xl text-stone-50 text-center font-bold py-10">
+            Employe Management
+          </h1>
+        
+        </span>
+
         <div className="container mx-auto flex justify-between py-5 border-b">
           <div className="left flex gap-3">
             <button
