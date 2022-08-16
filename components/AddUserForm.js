@@ -3,9 +3,8 @@ import { BiPlus } from 'react-icons/bi'
 
 import Success from "./Success";
 import Bug  from "./Bug";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { addUser } from "../lib/helper";
-import { getUsers } from "../lib/helper";
+import { useQueryClient, useMutation } from "react-query";
+import { addUser , getUsers } from "../lib/helper";
 
 
 

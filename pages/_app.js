@@ -1,6 +1,6 @@
 
 import '../styles/globals.css'
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { QueryClientProvider, QueryClient } from 'react-query';
 import { store } from '../redux/store'
 import { Provider } from 'react-redux';
 
