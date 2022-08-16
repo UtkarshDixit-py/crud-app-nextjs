@@ -45,6 +45,7 @@ export default function Table() {
 }
 
 function Tr({ _id, name, avatar, email, salary, date, status }) {
+    
   const visible = useSelector((state) => state.app.client.toggleForm);
   const dispatch = useDispatch();
 
