@@ -1,41 +1,38 @@
 import { useReducer } from "react";
 
-import { useQuery , useMutation , useQueryClient} from "react-query";
-import { getUser ,updateUser , getUsers } from "../lib/helper";
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import { getUser, updateUser, getUsers } from "../lib/helper";
 
 import { BiBrush } from "react-icons/bi";
 
 export default function UpdateUserForm({ formId, formData, setFormData }) {
-
-  const queryClient = useQueryClient() 
+  const queryClient = useQueryClient();
 
   const { isLoading, isError, data, error } = useQuery(["users", formId], () =>
     getUser(formId)
   );
 
-  const UpdateMutation = useMutation((newData)=>updateUser(formId,newData),{
-    onSuccess : async(data)=>{
+  const UpdateMutation = useMutation((newData) => updateUser(formId, newData), {
+    onSuccess: async (data) => {
       // queryClient.setQueryData('users',(old)=>[data])
-      queryClient.prefetchQuery('users',getUsers)
-
-    }
-  })
+      queryClient.prefetchQuery("users", getUsers);
+    },
+  });
 
   if (isLoading) return <div>Loading update form {formId}</div>;
   if (isError) return <div>Error{error}</div>;
 
   const { name, avatar, salary, date, email, status } = data;
-  const [firstname, lastname] = name ? name.split(' ') : formData;
+  const [firstname, lastname] = name ? name.split(" ") : formData;
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let userName = `${formData.firstname ?? firstname}${formData.lastname ?? lastname}`;
-    let updated = Object.assign({}, data, formData, { name: userName})
+    let userName = `${formData.firstname ?? firstname}${
+      formData.lastname ?? lastname
+    }`;
+    let updated = Object.assign({}, data, formData, { name: userName });
 
-    console.log(updated);
-
-    await UpdateMutation.mutate(updated)
-
+    await UpdateMutation.mutate(updated);
   };
 
   return (
