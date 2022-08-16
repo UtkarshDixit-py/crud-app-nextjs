@@ -11,7 +11,7 @@ export default function Table() {
   if (isError) return <div>Got Error{error}</div>;
 
   return (
-    <table className="min-w-full table-auto">
+    <table className="min-w-full table-auto ">
       <thead>
         <tr className="bg-gray-800">
           <th className="px-16 py-2">
@@ -85,7 +85,7 @@ function Tr({ _id, name, avatar, email, salary, date, status }) {
         <button className="cursor">
           <span
             className={`${
-              status == "Active" ? "bg-green-500" : "bg-red-500"
+              status == "Active" ? "bg-green-500" : "bg-gray-500"
             } text-white px-5 py-1 rounded-full`}
           >
             {status || "unknown"}

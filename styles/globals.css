@@ -25,7 +25,12 @@ a {
   }
   body {
     color: black;
-    background: white;
+    /* background:linear-gradient(to bottom, #818CF8 0%,#4338CA 100%); */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    background: linear-gradient(to right, #606c88, #3f4c6b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   }
 }
 
