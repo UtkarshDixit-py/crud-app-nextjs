@@ -17,11 +17,11 @@ export default function UpdateUserForm({ formId, formData, setFormData }) {
     },
   });
 
-  if (isLoading) return <div>Loading update form {formId}</div>;
+  if (isLoading) return <div>Loading Update Form</div>;
   if (isError) return <div>Error{error}</div>;
 
   const { name, avatar, salary, date, email, status } = data;
-  const [firstname, lastname] = name ? name.split(' ') : formData;
+  const [firstname, lastname] = name ? name.split(" ") : formData;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
