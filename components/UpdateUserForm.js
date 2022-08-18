@@ -21,11 +21,11 @@ export default function UpdateUserForm({ formId, formData, setFormData }) {
   if (isError) return <div>Error{error}</div>;
 
   const { name, avatar, salary, date, email, status } = data;
-  const [firstname, lastname] = name ? name.split(" ") : formData;
+  const [firstname, lastname] = name ? name.split(' ') : formData;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let userName = `${formData.firstname ?? firstname}${
+    let userName = `${formData.firstname ?? firstname} ${
       formData.lastname ?? lastname
     }`;
     let updated = Object.assign({}, data, formData, { name: userName });
