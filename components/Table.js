@@ -96,9 +96,9 @@ function Tr({ _id, name, avatar, email, salary, date, status }) {
         </button>
       </td>
       <td className="px-16 py-2 flex justify-around gap-5">
-        <button className="cursor" onClick={onUpdate}>
+        {/* <button className="cursor" onClick={onUpdate}>
           <BiEdit size={25} color={"#3f4c6b"}></BiEdit>
-        </button>
+        </button> */}
         <button className="cursor" onClick={onDelete}>
           <BiTrashAlt size={25} color={"#A70D2A"}></BiTrashAlt>
         </button>
